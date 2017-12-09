@@ -8,12 +8,49 @@ public class DayOne {
 	
 	
 	public static void main(String[] args) {
+		part1();
+		part2();
+	}
+
+
+	private static void part1() {
 		
+		//set up a place to put the numbers that match the critra
+		ArrayList<String> numsToSum = new ArrayList<>();
+		
+		//look through the whole list
+		for (int i = 0; i < input.length(); i++) {
+			
+			//set up how far i want to look ahead to match (this is important for the second part)
+			int jump = (i+1)%input.length();
+			
+			//does the current number i'm looking at equal the number i'm jumping to for comparison
+			if(input.charAt(i)==input.charAt(jump)){
+				
+				//if it does, ad it to the list i made earlier
+				numsToSum.add(input.substring(i, i+1));
+			}
+		}
+		
+		int rtn = 0;
+		
+		//go through and add all the numbers i found in the last step
+		for (String num : numsToSum) {
+			int i = Integer.parseInt(num);
+			rtn+=i;
+		}
+		
+		//display my answer to the console
+		System.out.println("Day 1 part 1: "+rtn);
+	}
+
+
+	private static void part2() {
 		ArrayList<String> numsToSum = new ArrayList<>();
 		for (int i = 0; i < input.length(); i++) {
 			
 			int jump = (i+(input.length()/2))%input.length();
-			if(input.charAt(i)==input.charAt((jump))){
+			if(input.charAt(i)==input.charAt(jump)){
 				numsToSum.add(input.substring(i, i+1));
 			}
 		}
@@ -24,7 +61,7 @@ public class DayOne {
 			int i = Integer.parseInt(num);
 			rtn+=i;
 		}
-		System.out.println(rtn);
+		System.out.println("Day 1 part 2: "+rtn);
 	}
 
 }
