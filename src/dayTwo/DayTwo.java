@@ -83,10 +83,9 @@ public class DayTwo {
 				rtn.get(i).addAll(Arrays.asList(nums));
 				i++;
 			}
-			
+			read.close();
 			return rtn;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
