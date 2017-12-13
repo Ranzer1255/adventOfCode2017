@@ -1,4 +1,4 @@
-package day01;
+package y2017.day01;
 
 import java.util.ArrayList;
 

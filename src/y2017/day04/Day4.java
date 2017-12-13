@@ -1,4 +1,4 @@
-package day04;
+package y2017.day04;
 
 import java.io.File;
 import java.io.FileNotFoundException;

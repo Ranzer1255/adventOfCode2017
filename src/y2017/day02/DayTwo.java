@@ -1,4 +1,4 @@
-package day02;
+package y2017.day02;
 
 import java.io.File;
 import java.io.IOException;

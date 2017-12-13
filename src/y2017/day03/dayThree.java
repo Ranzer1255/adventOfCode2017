@@ -1,4 +1,4 @@
-package day03;
+package y2017.day03;
 
 public class dayThree {
 
