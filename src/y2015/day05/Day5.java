@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day5 {
@@ -21,9 +22,10 @@ public class Day5 {
 		while (read.hasNextLine()){
 			strings.add(read.nextLine());
 		}
+		read.close();
 		
 		for (String string : strings) {
-			if(nice(string)){
+			if(nicePart2(string)){
 				niceList.add(string);
 			} else {
 				naughtyList.add(string);
@@ -35,20 +37,32 @@ public class Day5 {
 		
 	}
 
-	private static boolean nice(String string) {
-		
+	private static boolean nicePart2(String string) {
+		Pattern letterPairs = Pattern.compile("(.{2}).*\\1");
+		Pattern letterSamich = Pattern.compile("(.).\\1");
+		Matcher pair = letterPairs.matcher(string);
+		Matcher samich = letterSamich.matcher(string);
+		return (pair.find()&&samich.find());
+	}
+
+	private static boolean nicePart1(String string) {
+		System.out.println(string);
 		boolean rtn=false;
 		
 		Pattern vowels = Pattern.compile("[aeiou]");
-		Pattern doubles = Pattern.compile("[a-zA-Z]\\1");
+		Pattern doubles = Pattern.compile("([a-zA-Z])\\1");
 		Pattern naughty = Pattern.compile("(ab)|(cd)|(pq)|(xy)");
 		
-		if(naughty.matcher(string).matches()) return false;
+		System.out.println("naughty: "+naughty.matcher(string).find());
+		if(naughty.matcher(string).find()) return false;
 		
-		if(doubles.matcher(string).matches()){
+		System.out.println("Doubles: "+doubles.matcher(string).find());
+		System.out.println("one vowel: "+vowels.matcher(string).find());
+		if(doubles.matcher(string).find()){
 			int vowelCount = 0;
-			while(vowels.matcher(string).find()){
-				vowelCount++;
+			Matcher m = vowels.matcher(string);
+			while(m.find()){
+				vowelCount++;;
 			}
 			if (vowelCount>=3) {
 				rtn=true;
