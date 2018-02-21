@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Day4 {
 	
-	static File input = new File("C:/Users/jrdillingham.MABANKISD/Programing/workspace/adventofcode/src/day04/Day4Input");
+	static File input = new File("C:/Users/jrdillingham.MABANKISD/Programing/workspace/adventofcode/src/y2017/day04/Day4Input");
 	static List<String> passphrases = new ArrayList<>();
 	
 	public static void main(String[] args) {
@@ -29,19 +29,47 @@ public class Day4 {
 	private static int checkPassphrases() {
 		int rtn = 0;
 		
-		nextword:for (String phrase : passphrases) {
+		nextphrase:for (String phrase : passphrases) {
 			String [] words = phrase.split("\\s");
 			for (int i = 0; i < words.length; i++) {
 				for (int j = i+1; j < words.length; j++) {
-					if(words[i].equals(words[j]))
-						continue nextword;
+					if(words[i].equals(words[j])){
+						continue nextphrase;
+					}
+					
+					if (anagramCheck(words[i], words[j])) {
+						continue nextphrase;
+					}
 				}
 			}
+			
+			
 			rtn++;
 		}
 		
 		return rtn;
 	}
-	
-	
+
+	private static boolean anagramCheck(String s1, String s2) {
+		if (s1.length()==s2.length()) {
+			
+			int matchcount = 0;
+			match:for (int i = 0; i < s1.length(); i++) {
+				for (int j = 0; j < s2.length(); j++) {
+					//find match for char
+					if(s1.charAt(i)==s2.charAt(j)){
+						matchcount++;
+						continue match;
+					}	
+				}
+				break match;
+			}
+			if(matchcount == s1.length()){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
 }
