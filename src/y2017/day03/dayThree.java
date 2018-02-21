@@ -1,8 +1,6 @@
 package y2017.day03;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class dayThree {
