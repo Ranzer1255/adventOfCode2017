@@ -34,6 +34,8 @@ public class Obscuro {
 			System.out.println(
 					String.format("%d: %s", room.id, decrypt(room.name, room.id)));
 		}
+		
+		sc.close();
 	}
 
 	private static String decrypt(String name, int id) {

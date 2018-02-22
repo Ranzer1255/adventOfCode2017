@@ -1,9 +1,7 @@
 package y2016.day04;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Room {
 	

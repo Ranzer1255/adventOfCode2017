@@ -43,9 +43,11 @@ public class ThreeSidedSquare {
 					rtn.add(new Triangle(temp[0][k], temp[1][k], temp[2][k]));
 				}
 			}
+			
+			line.close();
 		}
 		
-		
+		sc.close();
 		return rtn;
 	}
 

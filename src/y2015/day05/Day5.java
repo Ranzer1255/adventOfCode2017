@@ -45,6 +45,7 @@ public class Day5 {
 		return (pair.find()&&samich.find());
 	}
 
+	@SuppressWarnings("unused")
 	private static boolean nicePart1(String string) {
 		System.out.println(string);
 		boolean rtn=false;
