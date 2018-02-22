@@ -29,7 +29,7 @@ public class bathroomKeypad {
 			System.out.println(kp.getCurrentLocation());
 		}
 		
-		
+		sc.close();
 	}
 	
 	
