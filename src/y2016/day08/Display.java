@@ -22,7 +22,8 @@ package y2016.day08;
 public class Display {
 	
 	
-	int[][] screen = new int[6][50];
+	boolean[][] screen = new boolean[6][50];//[y][x] || [b][a]
+//	boolean[][] screen = new boolean[3][7];//[y][x] || [b][a]
 	
 	/**
 	 * rect AxB turns on all of 
@@ -33,7 +34,13 @@ public class Display {
 	 * @param b
 	 */
 	public void rect(int a, int b){
-		//TODO
+//		System.out.println(String.format("rect %dx%d", a,b));
+		for (int i=0;i<a;i++) {
+			for(int j=0;j<b;j++){
+				screen[j][i]=true;
+			}
+		}
+//		System.out.println(this.getDisplay());
 	}
 	
 	/**
@@ -48,7 +55,19 @@ public class Display {
 	 * @param shift
 	 */
 	public void rotateRow(int row, int shift){
+//		System.out.println(String.format("rotate row y=%d by %d", row, shift));
 		//TODO
+		for(int i=0;i<shift;i++){
+			boolean bs = screen[row][screen[row].length-1];
+			for (int j = screen[row].length-1; j >=0; j--) {
+				if(j-1<0){
+					screen[row][j]=bs;
+					continue;
+				}
+				screen[row][j]=screen[row][j-1];
+			}
+		}
+//		System.out.println(this.getDisplay());
 	}
 	
 	/**
@@ -62,7 +81,19 @@ public class Display {
 	 * @param shift
 	 */
 	public void rotateCol(int col, int shift){
+//		System.out.println(String.format("rotate column x=%d by %d", col,shift));
 		//TODO
+		for(int i=0;i<shift;i++){
+			boolean bs = screen[screen.length-1][col];
+			for (int j = screen.length-1; j >=0; j--) {
+				if(j-1<0){
+					screen[j][col]=bs;
+					continue;
+				}
+				screen[j][col]=screen[j-1][col];
+			}
+		}
+//		System.out.println(this.getDisplay());
 	}
 	
 	/**
@@ -71,15 +102,30 @@ public class Display {
 	 * @return
 	 */
 	public String getDisplay(){
-		//TODO return display string
-		return "";
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < screen.length; i++) {
+			for (int j = 0; j < screen[i].length; j++) {
+				if(screen[i][j]) sb.append('#');
+				else sb.append('.');
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
 	}
 	
 	
 	
 	public int getLights(){
-		//TODO return number of lit pixels
-		return -1;
+		int rtn = 0;
+		
+		for (int i = 0; i < screen.length; i++) {
+			for (int j = 0; j < screen[i].length; j++) {
+				if (screen[i][j]) rtn++;
+			}
+		}
+		return rtn;
 	}
 
 }
